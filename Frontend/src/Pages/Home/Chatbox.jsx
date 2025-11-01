@@ -161,10 +161,10 @@ const Chatbox = () => {
             {/* Navbar */}
             <nav className="flex items-center justify-between bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700 p-4 shadow-md">
                 <div className="flex items-center space-x-3">
-                    <button className="md:hidden">
+                    {user.isLoggedin ? "" : <button className="md:hidden">
                         <Link to="/register" className="px-3 py-2 bg-gray-900 text-white rounded-md mr-2">Register</Link>
                         <Link to="/login" className="px-3 py-2 dark:text-white mr-2">Login</Link>
-                    </button>
+                    </button>}
                     <h1 className="text-xl font-bold text-gray-900 dark:text-white tracking-wide">
                         🤖 ChatBot
                     </h1>
