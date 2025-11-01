@@ -28,7 +28,7 @@ const Sidebar = () => {
 
     const handleDelete = async (id) => {
         try {
-            const res = await axios.post("http://localhost:8000/delete-session", { id });
+            const res = await axios.post("https://chat-bot-ok2h.onrender.com/delete-session", { id });
             if (res.status === 200) {
                 dispatch(getHistory(userId));
             }

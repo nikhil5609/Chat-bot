@@ -3,7 +3,8 @@ import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../Storage/userSlice';
-import { LogOut, Menu, Moon, Send, Sun } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import {  LogOut, Menu, Moon, Send, Sun } from 'lucide-react';
 import { setactiveSession } from '../../Storage/modelSlice';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -34,7 +35,7 @@ const Chatbox = () => {
     useEffect(() => {
         const fetchSession = async () => {
             if (sessionId) {
-                const res = await axios.post('http://localhost:8000/get-session', {
+                const res = await axios.post('https://chat-bot-ok2h.onrender.com/get-session', {
                     userid: user?.user?._id,
                     sessionid: sessionId,
                 });
@@ -69,7 +70,7 @@ const Chatbox = () => {
                     .find((row) => row.startsWith('token='))
                     ?.split('=')[1];
 
-            const response = await axios.get('http://localhost:8000/user/logout', {
+            const response = await axios.get('https://chat-bot-ok2h.onrender.com/user/logout', {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -104,12 +105,12 @@ const Chatbox = () => {
         try {
             let res;
             if (!user?.isLoggedin) {
-                res = await axios.post("http://localhost:8000/unauth/chat-bot", {
+                res = await axios.post("https://chat-bot-ok2h.onrender.com/unauth/chat-bot", {
                     userPrompt: mess
                 })
             }
             else {
-                res = await axios.post('http://localhost:8000/chat-bot', {
+                res = await axios.post('https://chat-bot-ok2h.onrender.com/chat-bot', {
                     userId: user.user._id,
                     userPrompt: mess,
                     sessionId: sessionId,
@@ -161,7 +162,8 @@ const Chatbox = () => {
             <nav className="flex items-center justify-between bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700 p-4 shadow-md">
                 <div className="flex items-center space-x-3">
                     <button className="md:hidden">
-                        <Menu className="text-gray-700 dark:text-gray-200 w-6 h-6" />
+                        <Link to="/register" className="px-3 py-2 bg-gray-900 text-white rounded-md mr-2">Register</Link>
+                        <Link to="/login" className="px-3 py-2 dark:text-white mr-2">Login</Link>
                     </button>
                     <h1 className="text-xl font-bold text-gray-900 dark:text-white tracking-wide">
                         🤖 ChatBot

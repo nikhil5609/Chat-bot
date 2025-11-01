@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const loginUser = createAsyncThunk('loginUser', async (userData, { rejectWithValue }) => {
   try {
-    const response = await axios.post('http://localhost:8000/user/login', userData);
+    const response = await axios.post('https://chat-bot-ok2h.onrender.com/user/login', userData);
     if (response.status != 201) {
       throw new Error('Login Failed');
     }
@@ -15,7 +15,7 @@ export const loginUser = createAsyncThunk('loginUser', async (userData, { reject
 
 export const createUser = createAsyncThunk('createUser', async (userData, { rejectWithValue }) => {
   try {
-    const response = await axios.post('http://localhost:8000/user/register', userData);
+    const response = await axios.post('https://chat-bot-ok2h.onrender.com/user/register', userData);
     if (response.status != 201) {
       throw new Error('Login Failed');
     }
@@ -36,7 +36,7 @@ export const verifyToken = createAsyncThunk('verifyToken', async ({ rejectWithVa
     
     if (!token) throw new Error("No token found");
     const response = await axios.get(
-      "http://localhost:8000/user/verify-token",
+      "https://chat-bot-ok2h.onrender.com/user/verify-token",
       {
         headers: {
           Authorization: `Bearer ${token}`,

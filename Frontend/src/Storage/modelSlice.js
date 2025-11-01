@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getHistory = createAsyncThunk('get-history',async (userId , { rejectWithValue }) => {
     try {
-        const res = await axios.post('http://localhost:8000/get-history',{
+        const res = await axios.post('https://chat-bot-ok2h.onrender.com/get-history',{
             userid: userId
         })
         if(res.status !== 200){
