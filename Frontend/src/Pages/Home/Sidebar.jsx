@@ -103,7 +103,9 @@ const Sidebar = () => {
             {/* --- Chat History --- */}
             {user.isLoggedin && (
                 model.loading ? (
-                    <Loading />
+                    <div className='w-full h-[70%] flex justify-center items-center'>
+                        <h1 className='dark:text-white font-semibold text-xl'>Loading...</h1>
+                    </div>
                 ) : (
                     <div className="flex-1 overflow-y-auto space-y-2 scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600">
                         {filteredHistory.length === 0 ? (
