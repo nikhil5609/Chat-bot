@@ -34,7 +34,7 @@ const Chatbox = () => {
     useEffect(() => {
         const fetchSession = async () => {
             if (sessionId) {
-                const res = await axios.post('http://localhost:8000/get-session', {
+                const res = await axios.post('https://chat-bot-ok2h.onrender.com/get-session', {
                     userid: user?.user?._id,
                     sessionid: sessionId,
                 });
@@ -69,7 +69,7 @@ const Chatbox = () => {
                     .find((row) => row.startsWith('token='))
                     ?.split('=')[1];
 
-            const response = await axios.get('http://localhost:8000/user/logout', {
+            const response = await axios.get('https://chat-bot-ok2h.onrender.com/user/logout', {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -104,12 +104,12 @@ const Chatbox = () => {
         try {
             let res;
             if (!user?.isLoggedin) {
-                res = await axios.post("http://localhost:8000/unauth/chat-bot", {
+                res = await axios.post("https://chat-bot-ok2h.onrender.com/unauth/chat-bot", {
                     userPrompt: mess
                 })
             }
             else {
-                res = await axios.post('http://localhost:8000/chat-bot', {
+                res = await axios.post('https://chat-bot-ok2h.onrender.com/chat-bot', {
                     userId: user.user._id,
                     userPrompt: mess,
                     sessionId: sessionId,
