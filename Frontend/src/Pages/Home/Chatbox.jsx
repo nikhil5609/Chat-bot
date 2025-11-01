@@ -169,7 +169,7 @@ const Chatbox = () => {
                 <div className="flex items-center space-x-3">
                     {user.isLoggedin ? <button
                         onClick={createNewChat}
-                        className="flex items-center justify-center space-x-2  py-2 px-3 rounded-md font-medium
+                        className="md:hidden flex items-center justify-center space-x-2  py-2 px-3 rounded-md font-medium
                            bg-gradient-to-r from-blue-500 to-indigo-600 text-white hover:opacity-90 transition-all shadow-md"
                     >
                         <Plus className="w-5 h-5" />
@@ -208,8 +208,8 @@ const Chatbox = () => {
             {/* Chat Section */}
             <div className="flex-1 overflow-y-auto p-6 space-y-4 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700">
                 {messages.length === 0 ? (
-                    <div className='w-full h-full'>
-                        <p className="text-center text-gray-500 dark:text-gray-400 mt-10 mb-60">
+                    <div className='w-full  h-[89%]'>
+                        <p className="text-center text-gray-500 dark:text-gray-400 mt-5 font-semibold text-xl mb-60">
                             Start a new conversation ✨
                         </p>
                         <h1 className='text-center font-bold dark:text-white text-3xl'>Hey {user?.user?.name} 👋</h1>
