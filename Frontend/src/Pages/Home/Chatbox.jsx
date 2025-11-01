@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../Storage/userSlice';
 import { Link } from 'react-router-dom';
-import {  LogOut, Menu, Moon, Send, Sun } from 'lucide-react';
-import { setactiveSession } from '../../Storage/modelSlice';
+import {  LogOut, Menu, Moon, Plus, Send, Sun } from 'lucide-react';
+import { getHistory, setactiveSession } from '../../Storage/modelSlice';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
@@ -19,6 +19,7 @@ const Chatbox = () => {
     const user = useSelector((state) => state.user);
     const model = useSelector((state) => state.model);
     const chatEndRef = useRef(null);
+    const userId = user?.user?._id;
 
     useEffect(() => {
         chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -60,6 +61,11 @@ const Chatbox = () => {
         document.documentElement.classList.toggle('dark', !darkMode);
         localStorage.setItem('theme', newTheme);
     };
+
+    const createNewChat = () => {
+            dispatch(setactiveSession(null));
+            dispatch(getHistory(userId));
+        };
 
     const handleLogout = async () => {
         try {
@@ -161,7 +167,14 @@ const Chatbox = () => {
             {/* Navbar */}
             <nav className="flex items-center justify-between bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700 p-4 shadow-md">
                 <div className="flex items-center space-x-3">
-                    {user.isLoggedin ? "" : <button className="md:hidden">
+                    {user.isLoggedin ? <button
+                        onClick={createNewChat}
+                        className="flex items-center justify-center space-x-2  py-2 px-3 rounded-md font-medium
+                           bg-gradient-to-r from-blue-500 to-indigo-600 text-white hover:opacity-90 transition-all shadow-md"
+                    >
+                        <Plus className="w-5 h-5" />
+                        <span>New Chat</span>
+                    </button> : <button className="md:hidden">
                         <Link to="/register" className="px-3 py-2 bg-gray-900 text-white rounded-md mr-2">Register</Link>
                         <Link to="/login" className="px-3 py-2 dark:text-white mr-2">Login</Link>
                     </button>}
