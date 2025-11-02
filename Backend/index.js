@@ -25,6 +25,6 @@ server.use('/user',userRouter);
 server.use('/',modelRouter);
 
 
-server.listen(8000, () => {
+server.listen(PORT, () => {
     console.log(`Server Running at PORT ${PORT}`);
 })
