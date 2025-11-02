@@ -20,7 +20,7 @@ main()
     })
 
 // Middleware
-app.use(cors({
+server.use(cors({
   origin: "https://chat-bot-frontend-qrhg.onrender.com",
   credentials: true,
 }));
