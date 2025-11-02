@@ -19,8 +19,7 @@ main()
 // Middleware
 server.use(cors({
     origin: 'https://chat-bot-frontend-qrhg.onrender.com',
-    methods: ['GET', 'POST'],
-    credentials: true
+    methods: ['GET', 'POST']
 }));
 server.use(express.json());
 
