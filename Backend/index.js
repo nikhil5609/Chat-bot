@@ -9,20 +9,24 @@ const { main } = require('./DB_connect.js');
 const PORT = process.env.PORT;
 
 main()
-.then(()=>{ 
-    console.log("DB Connected Successfully");
-})
-.catch((err)=>{
-    console.log("DB Connection failed: ",err);
-})
+    .then(() => {
+        console.log("DB Connected Successfully");
+    })
+    .catch((err) => {
+        console.log("DB Connection failed: ", err);
+    })
 
 // Middleware
-server.use(cors());
+server.use(cors({
+    origin: 'https://chat-bot-frontend-qrhg.onrender.com/',
+    methods: ['GET', 'POST'],
+    credentials: true
+}));
 server.use(express.json());
 
 // Routes
-server.use('/user',userRouter);
-server.use('/',modelRouter);
+server.use('/user', userRouter);
+server.use('/', modelRouter);
 
 
 server.listen(PORT, () => {
